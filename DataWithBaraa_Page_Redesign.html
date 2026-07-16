@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Power BI Course Materials — Data With Baraa Academy</title>
+<style>
+  :root{
+    --ink:#0B1220;
+    --teal:#09A59A;
+    --teal-deep:#067068;
+    --gold:#F2B93B;
+    --paper:#F7F5EF;
+    --paper-dim:#EFEBE0;
+    --card:#FFFFFF;
+    --slate:#5B6472;
+    --slate-soft:#8B93A0;
+    --line:#E4E0D4;
+    --green:#1C9A5B;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--paper);
+    font-family:'Inter',sans-serif;
+    color:var(--ink);
+    -webkit-font-smoothing:antialiased;
+  }
+  .display{font-family:'Space Grotesk',sans-serif;}
+  .mono{font-family:'JetBrains Mono',monospace;}
+
+  /* faint dot-grid texture, nod to a data canvas */
+  .bg-grid{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image: radial-gradient(circle, #d9d4c2 1px, transparent 1px);
+    background-size: 26px 26px;
+    opacity:0.55;
+  }
+
+  .wrap{position:relative; z-index:1; max-width:920px; margin:0 auto; padding:0 32px;}
+
+  /* NAV */
+  nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:26px 0; border-bottom:1px solid var(--line);
+  }
+  .logo{display:flex; align-items:center; gap:10px;}
+  .logo .mark{
+    width:34px; height:34px; border-radius:9px;
+    background:linear-gradient(135deg, var(--teal), var(--teal-deep));
+    display:flex; align-items:center; justify-content:center;
+    color:#fff; font-weight:700; font-size:16px;
+  }
+  .logo .word{font-weight:700; font-size:17px; letter-spacing:-0.01em;}
+  .logo .word span{color:var(--teal-deep);}
+  .navlinks{display:flex; gap:28px; font-size:14px; color:var(--slate); font-weight:500;}
+  .navlinks a{color:var(--slate); text-decoration:none;}
+
+  /* HERO */
+  .hero{padding:56px 0 8px; text-align:left;}
+  .chip{
+    display:inline-flex; align-items:center; gap:8px;
+    background:#E7F5F1; color:var(--teal-deep); border:1px solid #BFE6DE;
+    padding:7px 14px 7px 10px; border-radius:100px;
+    font-size:13px; font-weight:600; letter-spacing:0.01em;
+  }
+  .chip .dot{
+    width:16px; height:16px; border-radius:50%; background:var(--green);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .chip .dot svg{width:10px; height:10px;}
+
+  h1{
+    font-size:44px; line-height:1.08; letter-spacing:-0.02em;
+    margin:22px 0 14px; font-weight:700;
+  }
+  h1 .accent{color:var(--teal-deep);}
+  .lede{
+    font-size:17px; color:var(--slate); max-width:560px; line-height:1.6; margin:0 0 8px;
+  }
+  .order-meta{
+    margin-top:22px; display:flex; gap:22px; flex-wrap:wrap;
+    font-size:13px; color:var(--slate-soft);
+  }
+  .order-meta b{color:var(--ink); font-weight:600;}
+
+  /* DELIVERY CARD — manifest / boarding-pass styled */
+  .manifest{
+    margin:36px 0 30px; background:var(--card); border:1px solid var(--line);
+    border-radius:20px; overflow:hidden; box-shadow:0 1px 2px rgba(11,18,32,0.04);
+  }
+  .manifest-top{
+    padding:26px 30px 22px; display:flex; align-items:center; justify-content:space-between; gap:20px;
+  }
+  .manifest-title{font-size:13px; font-weight:600; color:var(--slate-soft); letter-spacing:0.06em; text-transform:uppercase;}
+  .manifest-course{font-size:20px; font-weight:700; margin-top:4px;}
+
+  .filelist{padding:4px 30px 6px;}
+  .file-row{
+    display:flex; align-items:center; gap:14px;
+    padding:14px 0; border-top:1px dashed var(--line);
+  }
+  .file-row:first-child{border-top:none;}
+  .file-icon{
+    width:38px; height:38px; border-radius:9px; flex:none;
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; font-weight:700; color:#fff;
+  }
+  .ic-pbix{background:#F2B93B;}
+  .ic-pdf{background:#E8604C;}
+  .ic-zip{background:#5B6472;}
+  .ic-xls{background:#1C9A5B;}
+  .file-name{font-weight:600; font-size:15px;}
+  .file-desc{font-size:13px; color:var(--slate-soft); margin-top:1px;}
+  .file-check{margin-left:auto; color:var(--green); flex:none;}
+
+  .perforation{
+    position:relative; height:0; border-top:2px dashed var(--line); margin:6px 0 0;
+  }
+  .perforation::before, .perforation::after{
+    content:""; position:absolute; top:-11px; width:22px; height:22px;
+    background:var(--paper); border-radius:50%;
+  }
+  .perforation::before{left:-41px;}
+  .perforation::after{right:-41px;}
+
+  .manifest-cta{
+    padding:24px 30px 28px; display:flex; align-items:center; justify-content:space-between; gap:20px; flex-wrap:wrap;
+  }
+  .cta-copy{font-size:13px; color:var(--slate-soft); max-width:320px;}
+  .btn-primary{
+    appearance:none; border:none; cursor:pointer;
+    background:var(--ink); color:#fff;
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:16px;
+    padding:16px 26px; border-radius:12px;
+    display:inline-flex; align-items:center; gap:10px;
+    text-decoration:none;
+    box-shadow:0 6px 0 var(--gold);
+  }
+  .btn-primary svg{width:18px; height:18px;}
+
+  .help-row{
+    text-align:center; font-size:13px; color:var(--slate-soft); margin:0 0 54px;
+  }
+  .help-row a{color:var(--teal-deep); font-weight:600; text-decoration:none;}
+
+  /* WHAT'S INSIDE */
+  .section-label{
+    font-size:12px; font-weight:700; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--teal-deep); margin-bottom:10px;
+  }
+  .section-head{font-size:24px; font-weight:700; margin:0 0 26px; letter-spacing:-0.01em;}
+
+  .grid{display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-bottom:56px;}
+  .grid-item{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:18px 20px; display:flex; gap:12px; align-items:flex-start;
+  }
+  .grid-item .num{
+    font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--slate-soft);
+    background:var(--paper-dim); border-radius:6px; padding:3px 7px; flex:none; margin-top:2px;
+  }
+  .grid-item h4{margin:0 0 4px; font-size:15px; font-weight:700;}
+  .grid-item p{margin:0; font-size:13.5px; color:var(--slate); line-height:1.5;}
+
+  /* NEXT STEP BANNER */
+  .banner{
+    background:linear-gradient(120deg, var(--teal-deep), var(--teal));
+    border-radius:20px; padding:34px 36px; color:#fff;
+    display:flex; align-items:center; justify-content:space-between; gap:24px; flex-wrap:wrap;
+    margin-bottom:56px;
+    position:relative; overflow:hidden;
+  }
+  .banner::after{
+    content:""; position:absolute; right:-40px; top:-60px; width:220px; height:220px;
+    border-radius:50%; background:rgba(255,255,255,0.08);
+  }
+  .banner h3{margin:0 0 8px; font-size:21px; font-family:'Space Grotesk',sans-serif;}
+  .banner p{margin:0; font-size:14px; opacity:0.9; max-width:420px;}
+  .btn-ghost{
+    background:#fff; color:var(--teal-deep); font-weight:700; font-size:14px;
+    padding:13px 22px; border-radius:10px; text-decoration:none; white-space:nowrap;
+    position:relative; z-index:1;
+  }
+
+  footer{
+    border-top:1px solid var(--line); padding:28px 0 40px;
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:13px; color:var(--slate-soft); flex-wrap:wrap; gap:10px;
+  }
+  footer a{color:var(--slate-soft); text-decoration:none; margin-left:18px;}
+</style>
+</head>
+<body>
+<div class="bg-grid"></div>
+<div class="wrap">
+
+  <nav>
+    <div class="logo">
+      <div class="mark">B</div>
+      <div class="word">Data With <span>Baraa</span></div>
+    </div>
+    <div class="navlinks">
+      <a>Courses</a><a>Blog</a><a>Login</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <span class="chip">
+      <span class="dot"><svg viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Order confirmed — access unlocked
+    </span>
+    <h1>Your Power BI<br>course materials <span class="accent">are ready.</span></h1>
+    <p class="lede">Everything you need to follow the full Power BI YouTube series: datasets, slides, and starter files is packaged below. Grab it and jump back into the course.</p>
+    <div class="order-meta">
+      <span>Order <b>#PB-955781</b></span>
+      <span>Sent to <b>joeokat@gmail.com</b></span>
+      <!-- <span>Receipt with tax details <b>emailed separately</b></span> -->
+    </div>
+  </div>
+
+  <div class="manifest">
+    <div class="manifest-top">
+      <div>
+        <div class="manifest-title">Included in this download</div>
+        <div class="manifest-course">Power BI Course Materials</div>
+      </div>
+    </div>
+
+    <div class="filelist">
+      <div class="file-row">
+        <div class="file-icon ic-pbix">PBIX</div>
+        <div>
+          <div class="file-name">Power-BI-Datasets.pbix</div>
+          <div class="file-desc">Sample datasets used throughout the series</div>
+        </div>
+        <div class="file-check">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+      <div class="file-row">
+        <div class="file-icon ic-pdf">PDF</div>
+        <div>
+          <div class="file-name">Course-Slides-2026.pdf</div>
+          <div class="file-desc">Hand-drawn lesson slides, all modules</div>
+        </div>
+        <div class="file-check">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+      <div class="file-row">
+        <div class="file-icon ic-zip">ZIP</div>
+        <div>
+          <div class="file-name">Starter-Files.zip</div>
+          <div class="file-desc">Project files to follow along step by step</div>
+        </div>
+        <div class="file-check">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+      <div class="file-row">
+        <div class="file-icon ic-xls">XLS</div>
+        <div>
+          <div class="file-name">Practice-Workbook.xlsx</div>
+          <div class="file-desc">Extra exercises with solutions</div>
+        </div>
+        <div class="file-check">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M5 13l4 4L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="perforation"></div>
+
+    <div class="manifest-cta">
+      <div class="cta-copy">One click gives you all four files in your Academy dashboard, no separate downloads.</div>
+      <a href="#" class="btn-primary">
+        Access Your Materials
+        <svg viewBox="0 0 24 24" fill="none"><path d="M5 12h14M13 6l6 6-6 6" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+
+  <p class="help-row">Button not working, or materials missing? <a href="#">Contact support →</a> we reply within a day.</p>
+
+  <div class="section-label">Before you dive in</div>
+  <div class="section-head">What's inside the pack</div>
+  <div class="grid">
+    <div class="grid-item">
+      <span class="num">01</span>
+      <div><h4>Real datasets</h4><p>The exact tables used in every lesson, ready to load into Power BI Desktop.</p></div>
+    </div>
+    <div class="grid-item">
+      <span class="num">02</span>
+      <div><h4>Hand-drawn slides</h4><p>Baraa's animated visual explanations, exported as a follow-along deck.</p></div>
+    </div>
+    <div class="grid-item">
+      <span class="num">03</span>
+      <div><h4>Starter project</h4><p>Pre-built files so you can jump straight into modeling and DAX, no setup lag.</p></div>
+    </div>
+    <div class="grid-item">
+      <span class="num">04</span>
+      <div><h4>Practice workbook</h4><p>Extra exercises with solutions to check your understanding as you go.</p></div>
+    </div>
+  </div>
+
+  <div class="banner">
+    <div>
+      <h3>Continue the full Power BI series</h3>
+      <p>These materials pair with the free Power BI Masterclass on YouTube, pick up wherever you left off.</p>
+    </div>
+    <a href="#" class="btn-ghost">Watch on YouTube →</a>
+  </div>
+
+  <footer>
+    <span>© Data With Baraa Academy 2026</span>
+    <span>Designed and developed with ❤️ by JoeOkat</span>
+    <span><a href="#">Terms of Use</a><a href="#">Privacy Policy</a></span>
+  </footer>
+
+</div>
+</body>
+</html>
