@@ -1,4 +1,4 @@
-# Power BI Course Materials — Page Redesign
+# Power BI Course Materials - Page Redesign
 
 A fix and redesign for the "Power BI Course Materials" delivery page on **Data With Baraa Academy**. This addresses a broken/unbuilt page linked from the platform's purchase-confirmation email.
 
@@ -10,6 +10,9 @@ The email links to `academy.datawithbaraa.com/p/power-bi-course-materials-955781
 
 <img width="959" height="473" alt="image" src="https://github.com/user-attachments/assets/0a62d119-7982-4a76-b23d-a9c7db095808" />
 
+<img width="947" height="417" alt="image" src="https://github.com/user-attachments/assets/57bf007b-739b-4317-8212-00080843193d" />
+
+
 - Headline still reads placeholder text: *"Name of Digital Download"*
 - The CTA button has no destination configured
 - Filler blocks (*"Example Text"*, *"Example Image with Text"*) are still in place
@@ -20,6 +23,12 @@ Net effect: someone who just signed up lands on what looks like a broken or aban
 ## The fix
 
 `Power_BI_Materials_Page_Redesign.html` is a fully coded mockup of a real replacement page. Key changes:
+
+<img width="947" height="478" alt="image" src="https://github.com/user-attachments/assets/3a35b4f4-5f13-43e2-8439-fb48a010d8a6" />
+
+<img width="948" height="415" alt="image" src="https://github.com/user-attachments/assets/89d4ff7d-ca88-45cc-8488-8562c9d7efe4" />
+
+<img width="948" height="412" alt="image" src="https://github.com/user-attachments/assets/5b746175-6c2f-4f59-90c0-a95b1df2b0cf" />
 
 | Issue | Fix |
 |---|---|
